@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Event;
+    use App\Jobs\SendEmailToUser;
     use App\User;
     use Illuminate\Http\Request;
 
@@ -39,6 +40,12 @@
             }
 
             $event->user()->attach($user);
+
+            /*
+             * отправляем уведомление через очередь
+             * */
+
+            SendEmailToUser::dispatchAfterResponse($user, $event);
 
             return response()->json($event->user()->get());
         }

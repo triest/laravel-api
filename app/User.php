@@ -42,7 +42,7 @@
 
         public static function get($id)
         {
-            return User::select(['id', 'first_name', 'last_name'])->where('id', $id)->first();
+            return User::select(['id', 'first_name', 'last_name','email'])->where('id', $id)->first();
         }
 
         public function events()
