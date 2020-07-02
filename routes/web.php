@@ -20,11 +20,13 @@
             function () {
                 Route::get('', 'EventsController@index');
                 Route::get('{id}', 'EventsController@show');
+                Route::get('{id}/users', 'EventsController@showUsers');
                 Route::post('', 'EventsController@store');
                 Route::put('{id}', 'EventsController@update');
-                Route::delete('{id}', 'EventsController@delete');
+                Route::put('{id}/users', 'EventsController@addUser');
+                Route::delete('{id}/users/{userid}', 'EventsController@deleteUser');
 
-                
+
             }
     );
 
