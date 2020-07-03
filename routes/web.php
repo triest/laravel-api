@@ -13,30 +13,36 @@
     |
     */
 
+    
+
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::prefix('events')->group(
+    Route::prefix('events')->name('events.')->group(
             function () {
-                Route::get('', 'EventsController@index');
+                Route::get('', 'EventsController@index')->name('getall');
                 Route::get('{id}', 'EventsController@show');
                 Route::get('{id}/users', 'EventsController@showUsers');
-                Route::post('', 'EventsController@store');
-                Route::put('{id}', 'EventsController@update');
+                //     Route::post('', 'EventsController@store');
+                //    Route::put('{id}', 'EventsController@update');
                 Route::put('{id}/users', 'EventsController@addUser');
                 Route::delete('{id}/users/{userid}', 'EventsController@deleteUser');
 
 
             }
     );
+    Route::prefix('test')->middleware('auth:api')->group(
+            function () {
+                Route::get('{id}', 'EventsController@test');
+            }
+    );
 
-
-    Route::prefix('users')->group(
+    Route::prefix('users')->middleware('auth:api')->group(
             function () {
                 Route::get('', 'UsersController@index');
                 Route::get('{id}', 'UsersController@show');
-                Route::post('', 'UsersController@store');
-                Route::put('{id}', 'UsersController@update');
-                Route::delete('{id}', 'UsersController@delete');
             }
     );
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -10,6 +10,15 @@
     {
         use Notifiable;
 
+        protected $table='users';
+
+        /**
+         * @var string
+         *
+         * @ORM\Column(name="api_token", type="string", length=255, nullable=false)
+         */
+        private $api_token;
+
         /**
          * The attributes that are mass assignable.
          *
@@ -19,6 +28,7 @@
                 'name',
                 'email',
                 'password',
+                'api_token'
         ];
 
         /**
@@ -29,6 +39,7 @@
         protected $hidden = [
                 'password',
                 'remember_token',
+             //   'api_token'
         ];
 
         /**

@@ -21,6 +21,12 @@
             return response()->json($event);
         }
 
+        public function showUsers($id, Request $request)
+        {
+            $event = Event::get($id);
+            $users = $event->user()->get();
+            return response()->json($users);
+        }
 
         public function addUser($id, Request $request)
         {
@@ -39,7 +45,14 @@
                 return response('user not found', 404);
             }
 
-            $event->user()->attach($user);
+            /*
+             * поиск что не дубли
+             * */
+
+            if(!$event->user->contains($user)){
+                $event->user()->attach($user);
+            }
+
 
             /*
              * отправляем уведомление через очередь
@@ -69,5 +82,10 @@
             $event->user()->detach($user);
 
             return response()->json($event->user()->get());
+        }
+
+        public function test(Request $request)
+        {
+            return response()->json();
         }
     }

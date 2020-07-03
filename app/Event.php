@@ -7,7 +7,7 @@
     class Event extends Model
     {
         //
-        protected $table = "events";
+        protected $table = 'events';
 
         public static function get($id = null)
         {

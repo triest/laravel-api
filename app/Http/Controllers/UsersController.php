@@ -20,18 +20,5 @@
             return response()->json($users);
         }
 
-        public function store(Request $request)
-        {
 
-        }
-
-        public function update($id, Request $request)
-        {
-
-        }
-
-        public function delete($id, Request $request)
-        {
-
-        }
     }
