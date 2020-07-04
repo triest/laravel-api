@@ -67,7 +67,7 @@
             $event1 = factory(Event::class)->create();
             $user = factory(User::class)->create();
 
-            $this->put('http://api/events/' . $event1->id . '/users?user_id=' . $user->id . '&api_token=' . $user->api_token);
+            $this->put('http://api/events/' . $event1->id . '/users/' . $user->id . '?api_token=' . $user->api_token);
 
 
             $this->get('http://api/events/' . $event1->id . '/users')
@@ -84,8 +84,8 @@
             $city = factory(City::class)->create();
             $event1 = factory(Event::class)->create();
             $user = factory(User::class)->create();
-            $this->put('http://api/events/' . $event1->id . '/users?user_id=' . $user->id.'&api_token='.$user->api_token);
-            $this->get('http://api/events/' . $event1->id . '/users'.'?api_token='.$user->api_token)
+            $this->put('http://api/events/' . $event1->id . '/users/' . $user->id . '?api_token=' . $user->api_token);
+            $this->get('http://api/events/' . $event1->id . '/users')
                     ->assertStatus(200)
                     ->assertJson([
                                     ['id' => $user->id]
@@ -94,7 +94,7 @@
 
             $this->delete('http://api/events/' . $event1->id . '/users/' . $user->id.'?api_token='.$user->api_token)->assertStatus(200);
 
-            $this->get('http://api/events/' . $event1->id . '/users'.'?api_token='.$user->api_token)
+            $this->get('http://api/events/' . $event1->id . '/users' . '?api_token=' . $user->api_token)
                     ->assertStatus(200)
                     ->assertJson([
 

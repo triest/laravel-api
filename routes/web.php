@@ -22,10 +22,8 @@
             function () {
                 Route::get('', 'EventsController@index')->name('getall');
                 Route::get('{id}', 'EventsController@show')->name('one');
-                Route::get('{id}/users', 'EventsController@showUsers');
-                //     Route::post('', 'EventsController@store');
-                //    Route::put('{id}', 'EventsController@update');
-                Route::put('{id}/users', 'EventsController@addUser');
+                Route::get('{id}/users', 'EventsController@showUsers')->name('users');
+                Route::put('{id}/users/{userid}', 'EventsController@addUser')->name('addUser');
                 Route::delete('{id}/users/{userid}', 'EventsController@deleteUser');
 
 
@@ -45,4 +43,4 @@
     );
     Auth::routes();
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

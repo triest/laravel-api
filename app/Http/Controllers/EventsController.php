@@ -28,19 +28,15 @@
             return response()->json($users);
         }
 
-        public function addUser($id, Request $request)
+        public function addUser($id,$userid, Request $request)
         {
             $event = Event::get($id);
             if ($event == null) {
                 return response('event not found', 404);
             }
-            if ($request->has('user_id')) {
-                $user_id = $request->user_id;
-            } else {
-                return response('user not found', 404);
-            }
 
-            $user = User::get($user_id);
+
+            $user = User::get($userid);
             if ($user == null) {
                 return response('user not found', 404);
             }
@@ -84,13 +80,5 @@
             return response()->json($event->user()->get());
         }
 
-        public function test(Request $request)
-        {
-            $response = $this->call('GET', '/events/3?api_token=EOsHhAkqEt1')
-                    //  $response = $this->get('http://api/events');
-                    ->assertStatus(200);
-            $array = json_decode($response->getContent(), true);
 
-            var_dump($array);
-        }
     }
