@@ -1,5 +1,6 @@
 <?php
 
+    use App\Http\Resources\Event;
     use Illuminate\Support\Facades\Route;
 
     /*
@@ -13,7 +14,6 @@
     |
     */
 
-    
 
     Route::get('/', function () {
         return view('welcome');
@@ -21,7 +21,7 @@
     Route::prefix('events')->name('events.')->group(
             function () {
                 Route::get('', 'EventsController@index')->name('getall');
-                Route::get('{id}', 'EventsController@show');
+                Route::get('{id}', 'EventsController@show')->name('one');
                 Route::get('{id}/users', 'EventsController@showUsers');
                 //     Route::post('', 'EventsController@store');
                 //    Route::put('{id}', 'EventsController@update');
@@ -43,6 +43,6 @@
                 Route::get('{id}', 'UsersController@show');
             }
     );
-Auth::routes();
+    Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');

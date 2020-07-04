@@ -86,6 +86,11 @@
 
         public function test(Request $request)
         {
-            return response()->json();
+            $response = $this->call('GET', '/events/3?api_token=EOsHhAkqEt1')
+                    //  $response = $this->get('http://api/events');
+                    ->assertStatus(200);
+            $array = json_decode($response->getContent(), true);
+
+            var_dump($array);
         }
     }
