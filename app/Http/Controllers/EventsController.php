@@ -12,7 +12,7 @@
         //
         public function index(Request $request)
         {
-            return response()->json(Event::select(['*'])->get());
+            return response()->json(Event::get());
         }
 
         public function show($id, Request $request)
@@ -28,7 +28,7 @@
             return response()->json($users);
         }
 
-        public function addUser($id,$userid, Request $request)
+        public function addUser($id, $userid, Request $request)
         {
             $event = Event::get($id);
             if ($event == null) {
@@ -41,20 +41,7 @@
                 return response('user not found', 404);
             }
 
-            /*
-             * поиск что не дубли
-             * */
-
-            if(!$event->user->contains($user)){
-                $event->user()->attach($user);
-            }
-
-
-            /*
-             * отправляем уведомление через очередь
-             * */
-
-            SendEmailToUser::dispatchAfterResponse($user, $event);
+            $event->attachUser($user);
 
             return response()->json($event->user()->get());
         }
@@ -75,7 +62,7 @@
             }
 
 
-            $event->user()->detach($user);
+            $event->datachUser($user);
 
             return response()->json($event->user()->get());
         }

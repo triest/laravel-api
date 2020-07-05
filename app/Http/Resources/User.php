@@ -18,7 +18,6 @@ class User extends JsonResource
           'name'=>$this->resource->name,
           'email'=>$this->resource->email,
 
-
         ];
     }
 }

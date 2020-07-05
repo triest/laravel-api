@@ -30,7 +30,6 @@
          */
         public function testGetone()
         {
-            $city = factory(City::class)->create();
             $event = factory(Event::class)->create();
             $user = factory(User::class)->create();
             $this->get('events/' . $event->id . '?&api_token=' . $user->api_token)
@@ -46,10 +45,8 @@
          *
          * @return void
          */
-
         public function testGetall()
         {
-            $city = factory(City::class)->create();
             $event1 = factory(Event::class)->create();
             $event2 = factory(Event::class)->create();
             $event3 = factory(Event::class)->create();
