@@ -12,9 +12,9 @@
                 'title' => $faker->title,
                 'date' => $faker->dateTimeBetween(\Illuminate\Support\Carbon::now()->toDateTimeString(),
                         \Illuminate\Support\Carbon::now()->addDays(rand(1, 60))),
-                'city_id' => function () {
+               /* 'city_id' => function () {
                     $city = \App\City::select(['*'])->first();
                     return $city->id;
-                }
+                }*/
         ];
     });

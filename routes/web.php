@@ -18,7 +18,7 @@
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::prefix('events')->middleware('auth:api')->name('events.')->group(
+    Route::prefix('events')->name('events.')->group(
             function () {
                 Route::get('', 'EventsController@index')->name('getall');
                 Route::get('{id}', 'EventsController@show')->name('one');

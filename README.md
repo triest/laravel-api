@@ -20,6 +20,8 @@ php artisan migrate
 
 composer dump-autoload
 
+php artisan db:seed
+
 **Запустить сервер.** Открыть сайт. В правам верхнем углу выбрать Register
 Зарегистрироваться.
 

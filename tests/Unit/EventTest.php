@@ -32,6 +32,7 @@
         {
             $event = factory(Event::class)->create();
             $user = factory(User::class)->create();
+            $city=factory(City::class)->create();
             $this->get('events/' . $event->id . '?&api_token=' . $user->api_token)
                     ->assertStatus(200)->assertJson([
                             'id' => $event->id,
