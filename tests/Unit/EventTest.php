@@ -36,6 +36,8 @@
             $this->get('events/' . $event->id . '?&api_token=' . $user->api_token)
                     ->assertStatus(200)->assertJson([
                             'id' => $event->id,
+                            'title' => $event->title,
+                            'city_id' => strval($event->city_id),
                     ]);;
         }
 
@@ -92,7 +94,7 @@
                             ]
                     );
 
-            $this->delete('http://api/events/' . $event1->id . '/users/' . $user->id.'?api_token='.$user->api_token)->assertStatus(200);
+            $this->delete('http://api/events/' . $event1->id . '/users/' . $user->id . '?api_token=' . $user->api_token)->assertStatus(200);
 
             $this->get('http://api/events/' . $event1->id . '/users' . '?api_token=' . $user->api_token)
                     ->assertStatus(200)

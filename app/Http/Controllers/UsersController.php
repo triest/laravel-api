@@ -10,13 +10,13 @@
         //
         public function index(Request $request)
         {
-            $users = User::select(['*'])->get();
+            $users = User::select(['id','first_name','last_name'])->get();
             return response()->json($users);
         }
 
         public function show($id, Request $request)
         {
-            $users = User::select(['*'])->where('id', $id)->first();
+            $users = User::select(['id','first_name','last_name'])->where('id', $id)->first();
             return response()->json($users);
         }
 

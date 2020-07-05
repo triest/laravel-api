@@ -39,7 +39,7 @@
         protected $hidden = [
                 'password',
                 'remember_token',
-             //   'api_token'
+                'api_token'
         ];
 
         /**

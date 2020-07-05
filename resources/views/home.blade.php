@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Events Api') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -17,27 +17,32 @@
                             {{$user->api_token}}
                         </p>
                         <p>
-                            Запросы:
                             Получть все события:
-                            GET: {{route('events.getall')}}?api_token={{$user->api_token}}
+                            <b>GET:</b> {{route('events.getall')}}?api_token={{$user->api_token}}
                         </p>
                         <p>
                             Получть одно событие:
-                            GET: {{route('events.one',['id'=>1])}}?api_token={{$user->api_token}}
+                            <b>GET:</b> {{route('events.one',['id'=>1])}}?api_token={{$user->api_token}}
                         </p>
 
-                            <p>
-                                Получть пользователей, записавшихся на событие:
-                                GET: {{route('events.users',['id'=>1])}}?api_token={{$user->api_token}}
-                            </p>
+                        <p>
+                            Получть пользователей, записавшихся на событие:
+                            <b>GET:</b> {{route('events.users',['id'=>1])}}?api_token={{$user->api_token}}
+                        </p>
                         <p>
                             Добавить пользователя:
-                            PUT: {{route('events.addUser',['id'=>1])}}?api_token={{$user->api_token}}?user_id=1
+                            <b>PUT:</b> {{route('events.addUser',['id'=>1,'userid'=>1])}}?api_token={{$user->api_token}}
                         </p>
-                            <p>
-                                Удалить пользователя:
-                                PUT: {{route('events.addUser',['id'=>1])}}?api_token={{$user->api_token}}?user_id=1
-                            </p>
+                        <p>
+                            Удалить пользователя:
+                            <b>DELETE:</b> {{route('events.deleteUser',['id'=>1,'userid'=>1])}}
+                            ?api_token={{$user->api_token}}
+                        </p>
+
+                        <p>
+                            Получить список пользоватлей:
+                            <b>GET:</b> {{route('users.list')}}?api_token={{$user->api_token}}
+                        </p>
                     </div>
                 </div>
             </div>

@@ -24,9 +24,7 @@
                 Route::get('{id}', 'EventsController@show')->name('one');
                 Route::get('{id}/users', 'EventsController@showUsers')->name('users');
                 Route::put('{id}/users/{userid}', 'EventsController@addUser')->name('addUser');
-                Route::delete('{id}/users/{userid}', 'EventsController@deleteUser');
-
-
+                Route::delete('{id}/users/{userid}', 'EventsController@deleteUser')->name('deleteUser');
             }
     );
     Route::prefix('test')->middleware('auth:api')->group(
@@ -35,9 +33,9 @@
             }
     );
 
-    Route::prefix('users')->middleware('auth:api')->group(
+    Route::prefix('users')->middleware('auth:api')->name('users.')->group(
             function () {
-                Route::get('', 'UsersController@index');
+                Route::get('', 'UsersController@index')->name('list');
                 Route::get('{id}', 'UsersController@show');
             }
     );
